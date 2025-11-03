@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radaway Software | Cloud Solutions & Software Development Experts</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="Radaway Software delivers cloud solutions, software development, and site reliability engineering services. Trusted contractors and consultants for enterprise cloud workloads and video game development.">
+    <meta name="keywords"
+        content="contractors, consultant, software development, software R&D, video games, cloud, solution architect, AWS, site reliability engineering, SRE">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Radaway Software">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Radaway Software | Cloud Solutions & Software Development">
+    <meta property="og:description"
+        content="Professional cloud consulting and software development services for enterprise companies. AWS, SRE, AI/ML, and realtime systems expertise.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://radawaysoftware.com">
+
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Radaway Software",
+        "url": "https://radawaysoftware.com",
+        "description": "Cloud solutions and software development consultants specializing in AWS, SRE, and enterprise systems",
+        "serviceType": ["Software Development", "Cloud Consulting", "Site Reliability Engineering", "Solution Architecture"],
+        "areaServed": "United States"
+    }
+    </script>
+
+    <!-- jQuery CDN with Integrity -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <style>
+        /* CSS Variables from Logo Colors */
+        :root {
+            --primary-pink: #ff0080;
+            --primary-magenta: #e600cc;
+            --dark-bg: #0a0a0f;
+            --darker-bg: #05050a;
+            --light-text: #ffffff;
+            --gray-text: #b3b3b3;
+            --accent-blue: #00d4ff;
+            --gradient-primary: linear-gradient(135deg, var(--primary-pink), var(--primary-magenta));
+            --gradient-dark: linear-gradient(135deg, var(--dark-bg), var(--darker-bg));
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: var(--light-text);
+            background: var(--gradient-dark);
+            overflow-x: hidden;
+        }
+
+        /* Accessibility Focus Styles */
+        *:focus {
+            outline: 3px solid var(--accent-blue);
+            outline-offset: 2px;
+        }
+
+        /* Skip Link for Screen Readers */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 6px;
+            background: var(--primary-pink);
+            color: white;
+            padding: 8px;
+            text-decoration: none;
+            z-index: 1000;
+            border-radius: 4px;
+        }
+
+        .skip-link:focus {
+            top: 6px;
+        }
+
+        /* Animated Background Circuit Pattern */
+        .circuit-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.1;
+            background-image:
+                linear-gradient(90deg, var(--primary-pink) 1px, transparent 1px),
+                linear-gradient(var(--primary-pink) 1px, transparent 1px);
+            background-size: 100px 100px;
+            animation: circuitMove 20s linear infinite;
+        }
+
+        @keyframes circuitMove {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            100% {
+                transform: translate(-100px, -100px);
+            }
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--primary-pink);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            height: 50px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: var(--light-text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-pink);
+            transform: translateY(-2px);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            padding: 0 2rem;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: bold;
+            margin-bottom: 1rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                filter: drop-shadow(0 0 10px var(--primary-pink));
+            }
+
+            to {
+                filter: drop-shadow(0 0 20px var(--primary-magenta));
+            }
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            margin-bottom: 2rem;
+            color: var(--gray-text);
+        }
+
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .floating-code {
+            position: absolute;
+            color: var(--primary-pink);
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            opacity: 0.6;
+            animation: float 15s linear infinite;
+        }
+
+        .floating-code:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-code:nth-child(2) {
+            top: 40%;
+            right: 10%;
+            animation-delay: 3s;
+        }
+
+        .floating-code:nth-child(3) {
+            bottom: 30%;
+            left: 15%;
+            animation-delay: 6s;
+        }
+
+        .floating-code:nth-child(4) {
+            top: 60%;
+            left: 70%;
+            animation-delay: 9s;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px) rotate(0deg);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 0.6;
+            }
+
+            90% {
+                opacity: 0.6;
+            }
+
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* CTA Button */
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--gradient-primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 30px rgba(255, 0, 128, 0.3);
+        }
+
+        .cta-button:active {
+            transform: translateY(-1px) scale(1.02);
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        /* Sections */
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 2rem;
+            text-align: center;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        /* Vision & Mission Cards */
+        .vision-mission {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+            margin: 3rem 0;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 0, 128, 0.2);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-pink);
+            box-shadow: 0 20px 40px rgba(255, 0, 128, 0.1);
+        }
+
+        .card h3 {
+            color: var(--primary-pink);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            border: 1px solid rgba(255, 0, 128, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            background: rgba(255, 0, 128, 0.1);
+            transform: scale(1.05);
+        }
+
+        .service-icon {
+            font-size: 2rem;
+            color: var(--primary-pink);
+            margin-bottom: 1rem;
+        }
+
+        /* Portfolio Grid */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 0, 128, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(255, 0, 128, 0.2);
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tech-tag {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* Contact Section */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 0, 128, 0.2);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--primary-pink);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 0, 128, 0.3);
+            border-radius: 5px;
+            color: var(--light-text);
+            font-size: 1rem;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary-pink);
+            outline: none;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--darker-bg);
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid var(--primary-pink);
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            .header-content {
+                padding: 0 1rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .section {
+                padding: 3rem 1rem;
+            }
+
+            .vision-mission {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+        }
+
+        /* High Contrast Mode Support */
+        @media (prefers-contrast: high) {
+            :root {
+                --primary-pink: #ff66b3;
+                --light-text: #ffffff;
+                --gray-text: #cccccc;
+            }
+        }
+
+        /* Reduced Motion Support */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Animated Background -->
+    <div class="circuit-bg" aria-hidden="true"></div>
+
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <img src="radaway-logo.webp" alt="Radaway Software Logo" class="logo">
+            <nav>
+                <div class="nav-links">
+                    <a href="#vision" class="nav-link">Vision</a>
+                    <a href="#services" class="nav-link">Services</a>
+                    <a href="#portfolio" class="nav-link">Portfolio</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <main id="main-content">
+        <section class="hero">
+            <div class="floating-elements" aria-hidden="true">
+                <div class="floating-code">AWS.EC2.launch()</div>
+                <div class="floating-code">const reliability = true;</div>
+                <div class="floating-code">SRE.monitor()</div>
+                <div class="floating-code">AI.optimize()</div>
+            </div>
+
+            <div class="hero-content">
+                <h1>Reliability Through Innovation</h1>
+                <p class="hero-subtitle">Expert cloud solutions, software development, and site reliability engineering
+                    for enterprise excellence</p>
+                <a href="#contact" class="cta-button">Transform Your Infrastructure</a>
+            </div>
+        </section>
+
+        <!-- Vision & Mission Section -->
+        <section id="vision" class="section">
+            <h2>Our Foundation</h2>
+            <div class="vision-mission">
+                <div class="card">
+                    <h3>🎯 Our Vision</h3>
+                    <p>Creating a world where reliability and trust form the foundation of every digital system. We
+                        envision an ecosystem where businesses operate with complete confidence in their technology
+                        infrastructure, knowing that every component is built to the highest standards of dependability
+                        and security.</p>
+                </div>
+                <div class="card">
+                    <h3>🚀 Our Mission</h3>
+                    <p>To achieve our vision through unwavering rigor, integrity, and unyielding adherence to quality in
+                        software development, monitoring, analysis, science, and quality assurance. We deliver
+                        excellence through systematic approaches, continuous improvement, and a relentless commitment to
+                        building systems that stand the test of time.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="section">
+            <h2>Our Expertise</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">☁️</div>
+                    <h3>Cloud Architecture & Consulting</h3>
+                    <p>AWS-focused solutions for scalable, reliable cloud infrastructure that grows with your business
+                        needs.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔧</div>
+                    <h3>Site Reliability Engineering</h3>
+                    <p>Proactive monitoring, incident response, and system optimization to ensure maximum uptime and
+                        performance.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">⚙️</div>
+                    <h3>System Engineering</h3>
+                    <p>Comprehensive system design and implementation for complex enterprise environments and
+                        requirements.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🤖</div>
+                    <h3>AI/ML Solutions</h3>
+                    <p>Intelligent automation and machine learning integration to optimize operations and drive
+                        innovation.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">⚡</div>
+                    <h3>Realtime Systems</h3>
+                    <p>High-performance solutions for video games, simulations, and applications requiring instant
+                        responsiveness.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🏗️</div>
+                    <h3>Solution Architecture</h3>
+                    <p>End-to-end architectural design and planning for complex software systems and enterprise
+                        solutions.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio Section -->
+        <section id="portfolio" class="section">
+            <h2>Featured Projects</h2>
+            <div class="portfolio-grid" id="portfolio-container">
+                <!-- Projects will be populated by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section">
+            <h2>Let's Build Something Amazing</h2>
+            <div class="contact-form">
+                <h3 style="text-align: center; margin-bottom: 1.5rem; color: var(--primary-pink);">Ready to Transform
+                    for the Next Adventure?</h3>
+                <p style="text-align: center; margin-bottom: 2rem; color: var(--gray-text);">
+                    Connect with our experts to discuss your cloud solutions, software development needs, and how we can
+                    help achieve your business goals.
+                </p>
+
+                <!-- HoneyBook Embed Placeholder -->
+                <div
+                    style="background: rgba(255, 0, 128, 0.1); border: 2px dashed var(--primary-pink); padding: 2rem; border-radius: 10px; text-align: center;">
+                    <div class="hb-p-6605a9300533610007359b0d-1"></div><img height="1" width="1" style="display:none"
+                        src="https://www.honeybook.com/p.png?pid=6605a9300533610007359b0d">
+                    <script>
+                        (function (h, b, s, n, i, p, e, t) {
+                            h._HB_ = h._HB_ || {}; h._HB_.pid = i;;;;
+                            t = b.createElement(s); t.type = "text/javascript"; t.async = !0; t.src = n;
+                            e = b.getElementsByTagName(s)[0]; e.parentNode.insertBefore(t, e);
+                        })(window, document, "script", "https://widget.honeybook.com/assets_users_production/websiteplacements/placement-controller.min.js", "6605a9300533610007359b0d");
+                    </script>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Radaway Software. Building reliable systems with unwavering quality.</p>
+    </footer>
+
+    <script>
+        // Project Data - Easy to modify and extend
+        const projects = [
+            {
+                title: "eCommerce Platform Solution Architecture",
+                description: "Designed and implemented a comprehensive cloud-native architecture for a scalable e-commerce platform, ensuring high availability, performance, and reliability for enterprise-level operations.",
+                technologies: ["AWS", "Architecture Design", "Scalability", "Cloud Infrastructure", "System Design"],
+                category: "Cloud Architecture"
+            },
+            {
+                title: "Reasonable Planning AI",
+                description: "Developed an intelligent AI-driven plugin for Unreal Engine that enhances procedural planning and automated decision-making capabilities for complex game systems and simulations.",
+                technologies: ["Unreal Engine", "C++", "AI/ML", "Plugin Development", "Real-time Systems"],
+                category: "Unreal Engine Plugin"
+            },
+            {
+                title: "Oversized Sun: Artillery",
+                description: "Created a high-performance artillery system plugin for Unreal Engine with sophisticated physics simulation, trajectory calculation, and real-time environmental interaction.",
+                technologies: ["Unreal Engine", "C++", "Physics Engine", "Plugin Development", "Real-time Rendering"],
+                category: "Unreal Engine Plugin"
+            }
+        ];
+
+        // Populate Portfolio
+        function populatePortfolio() {
+            const container = $('#portfolio-container');
+
+            projects.forEach(project => {
+                const projectCard = $(`
+                    <div class="project-card">
+                        <div class="project-content">
+                            <h3>${project.title}</h3>
+                            <p style="color: var(--primary-pink); font-size: 0.9rem; margin-bottom: 1rem;">${project.category}</p>
+                            <p>${project.description}</p>
+                            <div class="project-tech">
+                                ${project.technologies.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
+                            </div>
+                        </div>
+                    </div>
+                `);
+
+                container.append(projectCard);
+            });
+        }
+
+        // Smooth scrolling for navigation links
+        function initSmoothScrolling() {
+            $('.nav-link, .cta-button').on('click', function (e) {
+                e.preventDefault();
+                const target = $(this.getAttribute('href'));
+
+                if (target.length) {
+                    $('html, body').animate({
+                        scrollTop: target.offset().top - 80
+                    }, 1000, 'swing');
+                }
+            });
+        }
+
+        // Add scroll-based header background
+        function initHeaderScrollEffect() {
+            $(window).on('scroll', function () {
+                const header = $('header');
+                const scrollTop = $(window).scrollTop();
+
+                if (scrollTop > 100) {
+                    header.css('background', 'rgba(5, 5, 10, 0.98)');
+                } else {
+                    header.css('background', 'rgba(10, 10, 15, 0.95)');
+                }
+            });
+        }
+
+        // Intersection Observer for animations
+        function initScrollAnimations() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            // Observe all cards and sections
+            $('.card, .service-card, .project-card').each(function () {
+                this.style.opacity = '0';
+                this.style.transform = 'translateY(30px)';
+                this.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(this);
+            });
+        }
+
+        // Add enhanced button interactions
+        function initButtonAnimations() {
+            $('.service-card, .project-card, .card').hover(
+                function () {
+                    $(this).css('transform', 'translateY(-10px) scale(1.02)');
+                },
+                function () {
+                    $(this).css('transform', 'translateY(0) scale(1)');
+                }
+            );
+
+            // Add click feedback to all interactive elements
+            $('.cta-button, .nav-link, .service-card, .project-card').on('click', function () {
+                $(this).addClass('clicked');
+                setTimeout(() => {
+                    $(this).removeClass('clicked');
+                }, 200);
+            });
+        }
+
+        // Add CSS for click animation
+        function addClickStyles() {
+            const style = $('<style>');
+            style.text(`
+                .clicked {
+                    transform: scale(0.98) !important;
+                    transition: transform 0.1s ease !important;
+                }
+            `);
+            $('head').append(style);
+        }
+
+        // Initialize everything when document is ready
+        $(document).ready(function () {
+            populatePortfolio();
+            initSmoothScrolling();
+            initHeaderScrollEffect();
+            initScrollAnimations();
+            initButtonAnimations();
+            addClickStyles();
+
+            // Add loading animation completion
+            setTimeout(() => {
+                $('body').css('opacity', '1');
+            }, 100);
+        });
+
+        // Add keyboard navigation support
+        $(document).keydown(function (e) {
+            if (e.key === 'Tab') {
+                $('body').addClass('keyboard-nav');
+            }
+        });
+
+        $(document).mousedown(function () {
+            $('body').removeClass('keyboard-nav');
+        });
+
+        // Performance optimization: Throttle scroll events
+        let ticking = false;
+        function updateOnScroll() {
+            initHeaderScrollEffect();
+            ticking = false;
+        }
+
+        $(window).on('scroll', function () {
+            if (!ticking) {
+                requestAnimationFrame(updateOnScroll);
+                ticking = true;
+            }
+        });
+    </script>
+</body>
+
+</html>
