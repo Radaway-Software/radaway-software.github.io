@@ -206,20 +206,31 @@
         }
 
         @media (max-width: 900px) {
+            html, body {
+                height: auto;
+            }
+
             body {
                 overflow: auto;
             }
 
             main {
                 grid-template-columns: 1fr;
+                min-height: unset;
             }
 
             .pitch {
                 border-right: none;
                 border-bottom: 1px solid rgba(255, 0, 128, 0.25);
+                overflow-y: unset;
+            }
+
+            .contact {
+                overflow-y: unset;
             }
 
             .contact-frame {
+                height: auto;
                 min-height: 600px;
             }
         }
