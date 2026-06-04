@@ -195,6 +195,130 @@
             padding: 1.25rem;
         }
 
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.1rem;
+            height: 100%;
+        }
+
+        .contact-form h2 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.15rem;
+            flex-shrink: 0;
+        }
+
+        .form-body {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            flex: 1;
+            min-height: 0;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+        }
+
+        .form-group.grow {
+            flex: 1;
+            min-height: 0;
+        }
+
+        .form-group label {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--gray-text);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 0, 128, 0.2);
+            border-radius: 8px;
+            padding: 0.6rem 0.85rem;
+            color: var(--light-text);
+            font-size: 0.875rem;
+            font-family: inherit;
+            transition: border-color 0.2s, background 0.2s;
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: rgba(255, 0, 128, 0.55);
+            background: rgba(255, 0, 128, 0.04);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(179, 179, 179, 0.45);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+            height: 100%;
+        }
+
+        .submit-btn {
+            background: var(--gradient-primary);
+            border: none;
+            border-radius: 8px;
+            padding: 0.7rem 1.5rem;
+            color: #fff;
+            font-size: 0.9rem;
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            transition: opacity 0.2s, transform 0.15s;
+            width: 100%;
+            letter-spacing: 0.03em;
+            flex-shrink: 0;
+        }
+
+        .submit-btn:hover:not(:disabled) {
+            opacity: 0.88;
+            transform: translateY(-1px);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.55;
+            cursor: not-allowed;
+        }
+
+        .form-status {
+            display: none;
+            padding: 0.65rem 0.9rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            flex-shrink: 0;
+        }
+
+        .form-status.success {
+            display: block;
+            background: rgba(0, 200, 100, 0.08);
+            border: 1px solid rgba(0, 200, 100, 0.28);
+            color: #4ade80;
+        }
+
+        .form-status.error {
+            display: block;
+            background: rgba(255, 60, 60, 0.08);
+            border: 1px solid rgba(255, 60, 60, 0.28);
+            color: #f87171;
+        }
+
         footer {
             padding: 0.6rem 2rem;
             border-top: 1px solid rgba(255, 0, 128, 0.25);
@@ -231,7 +355,15 @@
 
             .contact-frame {
                 height: auto;
-                min-height: 600px;
+            }
+
+            .contact-form {
+                height: auto;
+            }
+
+            .form-group textarea {
+                min-height: 140px;
+                height: auto;
             }
         }
 
@@ -279,13 +411,58 @@
 
         <section class="contact" aria-label="Contact">
             <div class="contact-frame">
-                <div class="hb-p-6605a9300533610007359b0d-1"></div>
+                <form class="contact-form" id="contact-form" novalidate>
+                    <h2>Let's Start Something Together</h2>
+                    <div class="form-body">
+                        <div class="form-group">
+                            <label for="company-name">Company Name</label>
+                            <input type="text" id="company-name" name="entry.1633920210" placeholder="Acme Corp" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-email">Email</label>
+                            <input type="email" id="contact-email" name="entry.227649005" placeholder="you@example.com" required>
+                        </div>
+                        <div class="form-group grow">
+                            <label for="work-desc">Describe the Work</label>
+                            <textarea id="work-desc" name="entry.1846923513" placeholder="Please describe the type of work and high-level objectives…" required></textarea>
+                        </div>
+                    </div>
+                    <div class="form-status" id="form-status" role="alert" aria-live="polite"></div>
+                    <button type="submit" class="submit-btn" id="submit-btn">Send Message</button>
+                </form>
                 <script>
-                    (function (h, b, s, n, i, p, e, t) {
-                        h._HB_ = h._HB_ || {}; h._HB_.pid = i;;;;
-                        t = b.createElement(s); t.type = "text/javascript"; t.async = !0; t.src = n;
-                        e = b.getElementsByTagName(s)[0]; e.parentNode.insertBefore(t, e);
-                    })(window, document, "script", "https://widget.honeybook.com/assets_users_production/websiteplacements/placement-controller.min.js", "6605a9300533610007359b0d");
+                    document.getElementById('contact-form').addEventListener('submit', async function (e) {
+                        e.preventDefault();
+                        const form = e.target;
+                        const btn = document.getElementById('submit-btn');
+                        const status = document.getElementById('form-status');
+
+                        if (!form.checkValidity()) {
+                            form.reportValidity();
+                            return;
+                        }
+
+                        btn.disabled = true;
+                        btn.textContent = 'Sending…';
+                        status.className = 'form-status';
+                        status.textContent = '';
+
+                        try {
+                            await fetch(
+                                'https://docs.google.com/forms/d/1PovCrOQWfouii3KWOhKXPApEvnm5B4RYwYMOoY8hQuY/formResponse',
+                                { method: 'POST', mode: 'no-cors', body: new FormData(form) }
+                            );
+                            status.className = 'form-status success';
+                            status.textContent = 'Message sent — we’ll be in touch soon.';
+                            form.reset();
+                        } catch {
+                            status.className = 'form-status error';
+                            status.textContent = 'Something went wrong. Please try again or email us directly.';
+                        } finally {
+                            btn.disabled = false;
+                            btn.textContent = 'Send Message';
+                        }
+                    });
                 </script>
             </div>
         </section>
