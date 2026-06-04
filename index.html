@@ -473,9 +473,8 @@
                                     grecaptcha.execute(SITE_KEY, { action: "submit" }).then(function(token){
                                         data.captchaToken = token;
                                         fetch(ENDPOINT, { method: "POST", body: JSON.stringify(data) })
-                                        .then(response => response.json())
-                                        .then(d => {
-                                            if(d.success) {
+                                        .then(r => {
+                                            if(r.ok) {
                                                 status.className = "form-status success";
                                                 status.textContent = "Message recevied, we will be in contact within 72 hours."
                                             } else {
@@ -484,9 +483,14 @@
                                             }
                                         })
                                         .catch(error => {
-                                            statusElement.innerText = "Error encountered. Please try again later."
+                                            status.className = "form-status error";
+                                            status.textContent = "Error encountered. Please try again later."
                                         })
-                                        .finally(() => { form.reset(); btn.disabled = false; });
+                                        .finally(() => {
+                                            form.reset();
+                                            btn.disabled = false;
+                                            btn.textContent = "Send Message";
+                                        });
                                     });
                                 });
                         });
