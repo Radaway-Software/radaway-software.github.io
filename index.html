@@ -14,6 +14,7 @@
     <meta name="author" content="Radaway Software">
 
     <link rel="icon" type="image/png" href="images/tardigrade-logo_dsw2tn_sm.png">
+    <script src="https://www.google.com/recaptcha/api.js?render=6Lel9AstAAAAAOEoxb9VvTGlsMuoYs12U66anWzH"></script>
 
     <meta property="og:title" content="Radaway Software | Bespoke Cloud & Software Engineering">
     <meta property="og:description"
@@ -319,6 +320,21 @@
             color: #f87171;
         }
 
+        .recaptcha-notice {
+            font-size: 0.7rem;
+            color: rgba(179, 179, 179, 0.55);
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .recaptcha-notice a {
+            color: rgba(179, 179, 179, 0.7);
+        }
+
+        .grecaptcha-badge {
+            visibility: hidden;
+        }
+
         footer {
             padding: 0.6rem 2rem;
             border-top: 1px solid rgba(255, 0, 128, 0.25);
@@ -412,57 +428,71 @@
         <section class="contact" aria-label="Contact">
             <div class="contact-frame">
                 <form class="contact-form" id="contact-form" novalidate>
-                    <h2>Let's Start Something Together</h2>
+                    <h2>Let’s Start Something Together</h2>
                     <div class="form-body">
                         <div class="form-group">
                             <label for="company-name">Company Name</label>
-                            <input type="text" id="company-name" name="entry.1633920210" placeholder="Acme Corp" required>
+                            <input type="text" id="company-name" name="business_name" placeholder="Acme Corp" required>
                         </div>
                         <div class="form-group">
                             <label for="contact-email">Email</label>
-                            <input type="email" id="contact-email" name="entry.227649005" placeholder="you@example.com" required>
+                            <input type="email" id="contact-email" name="initial_contact_email" placeholder="you@example.com" required>
                         </div>
                         <div class="form-group grow">
                             <label for="work-desc">Describe the Work</label>
-                            <textarea id="work-desc" name="entry.1846923513" placeholder="Please describe the type of work and high-level objectives…" required></textarea>
+                            <textarea id="work-desc" name="message" placeholder="Please describe the type of work and high-level objectives…" required></textarea>
                         </div>
                     </div>
                     <div class="form-status" id="form-status" role="alert" aria-live="polite"></div>
                     <button type="submit" class="submit-btn" id="submit-btn">Send Message</button>
+                    <p class="recaptcha-notice">Protected by reCAPTCHA &mdash; <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Privacy</a> &middot; <a href="https://policies.google.com/terms" target="_blank" rel="noopener">Terms</a></p>
                 </form>
                 <script>
-                    document.getElementById('contact-form').addEventListener('submit', async function (e) {
-                        e.preventDefault();
-                        const form = e.target;
-                        const btn = document.getElementById('submit-btn');
-                        const status = document.getElementById('form-status');
+                    (function () {
+                        var ENDPOINT = ‘https://script.google.com/macros/s/AKfycbyAGVSIrklt5sb76MrteADrrBTLCLAITLGUxM5wigql55m8gGCK7dSMcCt-xwOUFeTZ/exec’;
+                        var SITE_KEY = ‘6Lel9AstAAAAAOEoxb9VvTGlsMuoYs12U66anWzH’;
 
-                        if (!form.checkValidity()) {
-                            form.reportValidity();
-                            return;
-                        }
+                        document.getElementById(‘contact-form’).addEventListener(‘submit’, async function (e) {
+                            e.preventDefault();
+                            var form = e.target;
+                            var btn = document.getElementById(‘submit-btn’);
+                            var status = document.getElementById(‘form-status’);
 
-                        btn.disabled = true;
-                        btn.textContent = 'Sending…';
-                        status.className = 'form-status';
-                        status.textContent = '';
+                            if (!form.checkValidity()) {
+                                form.reportValidity();
+                                return;
+                            }
 
-                        try {
-                            await fetch(
-                                'https://docs.google.com/forms/d/1PovCrOQWfouii3KWOhKXPApEvnm5B4RYwYMOoY8hQuY/formResponse',
-                                { method: 'POST', mode: 'no-cors', body: new FormData(form) }
-                            );
-                            status.className = 'form-status success';
-                            status.textContent = 'Message sent — we’ll be in touch soon.';
-                            form.reset();
-                        } catch {
-                            status.className = 'form-status error';
-                            status.textContent = 'Something went wrong. Please try again or email us directly.';
-                        } finally {
-                            btn.disabled = false;
-                            btn.textContent = 'Send Message';
-                        }
-                    });
+                            btn.disabled = true;
+                            btn.textContent = ‘Sending…’;
+                            status.className = ‘form-status’;
+                            status.textContent = ‘’;
+
+                            try {
+                                var data = Object.fromEntries(new FormData(form));
+                                data.captchaToken = await new Promise(function (resolve) {
+                                    grecaptcha.ready(function () {
+                                        grecaptcha.execute(SITE_KEY, { action: ‘submit’ }).then(resolve);
+                                    });
+                                });
+                                var res = await fetch(ENDPOINT, { method: ‘POST’, body: JSON.stringify(data) });
+                                var payload = await res.json();
+                                if (payload.ok) {
+                                    status.className = ‘form-status success’;
+                                    status.textContent = ‘Message sent — we’ll be in touch soon.’;
+                                    form.reset();
+                                } else {
+                                    throw new Error(‘rejected’);
+                                }
+                            } catch {
+                                status.className = ‘form-status error’;
+                                status.textContent = ‘Something went wrong. Please try again or email us directly.’;
+                            } finally {
+                                btn.disabled = false;
+                                btn.textContent = ‘Send Message’;
+                            }
+                        });
+                    })();
                 </script>
             </div>
         </section>
