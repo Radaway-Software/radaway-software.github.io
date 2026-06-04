@@ -472,22 +472,33 @@
                                 grecaptcha.ready(function () {
                                     grecaptcha.execute(SITE_KEY, { action: "submit" }).then(function(token){
                                         data.captchaToken = token;
-                                        fetch(ENDPOINT, { method: "POST", body: JSON.stringify(data) })
-                                        .then(r => {
-                                            if(r.ok) {
+                                        fetch(ENDPOINT, { 
+                                            method: "POST", 
+                                            body: JSON.stringify(data),
+                                            // Explicitly sending as text/plain prevents Google Apps Script CORS preflight issues
+                                            headers: {
+                                                "Content-Type": "text/plain;charset=utf-8"
+                                            }
+                                        })
+                                        .then(r => r.json()) // Parse the JSON from Apps Script
+                                        .then(result => {
+                                            if(result.ok) {
                                                 status.className = "form-status success";
-                                                status.textContent = "Message recevied, we will be in contact within 72 hours."
+                                                status.textContent = "Message received, we will be in contact within 72 hours.";
+                                                form.reset();
                                             } else {
+                                                // If result.ok is false, display the actual error sent by Apps Script
                                                 status.className = "form-status error";
-                                                status.textContent = "Something went wrong. Please try again or email us directly.";
+                                                status.textContent = "Something went wrong. Please try again.";
+                                                console.error("Apps Script Error:", result.error); // Check your browser console!
                                             }
                                         })
                                         .catch(error => {
                                             status.className = "form-status error";
-                                            status.textContent = "Error encountered. Please try again later."
+                                            status.textContent = "Error encountered. Please try again later.";
+                                            console.error("Fetch Error:", error);
                                         })
                                         .finally(() => {
-                                            form.reset();
                                             btn.disabled = false;
                                             btn.textContent = "Send Message";
                                         });
