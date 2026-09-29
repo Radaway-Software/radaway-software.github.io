@@ -173,24 +173,77 @@
         }
 
         .project {
+            --card-accent: var(--primary-pink);
+            --card-accent-rgb: 255, 0, 128;
+            position: relative;
             display: flex;
             flex-direction: column;
             gap: 0.5rem;
-            padding: 1rem 1.1rem;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 0, 128, 0.25);
-            border-left: 3px solid var(--primary-pink);
-            border-radius: 10px;
-            transition: border-color 0.2s, background 0.2s, transform 0.15s;
+            padding: 1.1rem 1.2rem;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            background:
+                linear-gradient(rgba(255, 255, 255, 0.025), rgba(255, 255, 255, 0.025)) padding-box,
+                repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.018) 0 1px, transparent 1px 4px) padding-box,
+                linear-gradient(var(--darker-bg), var(--darker-bg)) padding-box,
+                linear-gradient(135deg, rgba(var(--card-accent-rgb), 0.55), rgba(255, 255, 255, 0.06) 45%, rgba(var(--card-accent-rgb), 0.3)) border-box;
+            transition: box-shadow 0.25s, transform 0.2s;
+        }
+
+        .project::before,
+        .project::after {
+            content: "";
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border-color: var(--card-accent);
+            border-style: solid;
+            opacity: 0.8;
+            transition: width 0.25s, height 0.25s, opacity 0.25s;
+            pointer-events: none;
+        }
+
+        .project::before {
+            top: -1px;
+            left: -1px;
+            border-width: 2px 0 0 2px;
+            border-top-left-radius: 4px;
+        }
+
+        .project::after {
+            bottom: -1px;
+            right: -1px;
+            border-width: 0 2px 2px 0;
+            border-bottom-right-radius: 4px;
         }
 
         .project:hover {
-            border-color: rgba(255, 0, 128, 0.6);
-            background: rgba(255, 0, 128, 0.05);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px -12px rgba(var(--card-accent-rgb), 0.45);
+        }
+
+        .project:hover::before,
+        .project:hover::after {
+            width: 22px;
+            height: 22px;
+            opacity: 1;
         }
 
         .project.featured {
-            border-left-color: var(--accent-blue);
+            --card-accent: var(--accent-blue);
+            --card-accent-rgb: 0, 212, 255;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .project,
+            .project::before,
+            .project::after {
+                transition: none;
+            }
+
+            .project:hover {
+                transform: none;
+            }
         }
 
         .project-kicker {
