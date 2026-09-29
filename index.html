@@ -4,21 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Radaway Software | Games &amp; Game Technology</title>
+    <title>Radaway Software | Game Technology &amp; Engineering</title>
 
     <meta name="description"
-        content="Radaway Software builds games and the deterministic, networked tech behind them: Unreal Engine plugins, rollback-ready simulation, and a multiplayer RTS in development.">
+        content="Radaway Software is a technology company focused on games: multiplayer networking, deterministic simulation, Unreal Engine systems, and game backends for studios, plus our own products.">
     <meta name="keywords"
-        content="game development, indie games, Unreal Engine, UE5 plugins, game AI, deterministic simulation, multiplayer networking, RTS, Rust, Fab">
+        content="game technology, game development services, Unreal Engine, UE5 plugins, multiplayer networking, netcode, deterministic simulation, game AI, game backend, Rust, RTS">
     <meta name="robots" content="index, follow">
     <meta name="author" content="Radaway Software">
 
     <link rel="icon" type="image/png" href="images/tardigrade-logo_dsw2tn_sm.png">
     <script src="https://www.google.com/recaptcha/api.js?render=6Lel9AstAAAAAOEoxb9VvTGlsMuoYs12U66anWzH"></script>
 
-    <meta property="og:title" content="Radaway Software | Games &amp; Game Technology">
+    <meta property="og:title" content="Radaway Software | Game Technology &amp; Engineering">
     <meta property="og:description"
-        content="Games and game technology: Unreal Engine plugins, deterministic multiplayer tech, and a multiplayer RTS in development.">
+        content="Game technology and engineering for studios: multiplayer networking, deterministic simulation, Unreal Engine systems, and game backends.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://radawaysoftware.com">
 
@@ -28,12 +28,9 @@
         "@type": "Organization",
         "name": "Radaway Software",
         "url": "https://radawaysoftware.com",
-        "description": "Games and game technology: Unreal Engine plugins, deterministic simulation, and multiplayer networking",
-        "sameAs": [
-            "https://github.com/OversizedSunCoreDev/ArtilleryEco",
-            "https://github.com/OversizedSunCoreDev/longboy",
-            "https://www.fab.com/listings/dd0fadd5-172c-4938-ae9c-be527eab8b09"
-        ]
+        "description": "Technology company focused on games: multiplayer networking, deterministic simulation, Unreal Engine systems, and game backends",
+        "serviceType": ["Game Development", "Multiplayer Networking", "Unreal Engine Development", "Game Backend Engineering"],
+        "areaServed": "United States"
     }
     </script>
 
@@ -145,6 +142,28 @@
         .pitch .lede {
             color: var(--gray-text);
             font-size: 1rem;
+        }
+
+        .capabilities {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .capabilities li {
+            padding: 0.3rem 0.75rem;
+            border: 1px solid rgba(255, 0, 128, 0.35);
+            border-radius: 999px;
+            font-size: 0.85rem;
+        }
+
+        .pitch h2 {
+            font-size: 0.8rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--primary-pink);
+            margin-top: 0.5rem;
         }
 
         .projects {
@@ -420,41 +439,53 @@
     <header>
         <img src="images/tardigrade-logo_dsw2tn.png" alt="" class="logo">
         <span class="brand">Radaway Software</span>
-        <span class="brand-tag">Games &amp; Game Tech</span>
+        <span class="brand-tag">Game Technology</span>
     </header>
 
     <main>
         <section class="pitch" aria-label="About">
-            <h1>We make games, and the tech that makes them fast.</h1>
+            <h1>Technology for games, built to perform.</h1>
             <p class="lede">
-                Radaway Software is an independent game studio. We build deterministic simulation, low-latency
-                multiplayer networking, and Unreal Engine tools, and we use them to make our own games.
+                Radaway Software is a technology company focused on games. We help studios build multiplayer
+                networking, deterministic simulation, and Unreal Engine systems, and we ship products of our own.
             </p>
 
+            <ul class="capabilities" aria-label="Capabilities">
+                <li>Multiplayer networking &amp; netcode</li>
+                <li>Deterministic simulation</li>
+                <li>Unreal Engine systems</li>
+                <li>Game AI</li>
+                <li>Game backends &amp; cloud</li>
+            </ul>
+
+            <h2>Our Products</h2>
             <div class="projects">
                 <article class="project featured">
                     <span class="project-kicker">Game &middot; In Development</span>
                     <h3>Untitled Multiplayer RTS</h3>
-                    <p>A multiplayer real-time strategy game, built on our own deterministic simulation and networking stack.</p>
+                    <p>A multiplayer real-time strategy game, currently in development.</p>
                     <span class="project-link pending">More soon</span>
                 </article>
 
-                <article class="project">
+                <article class="project featured">
                     <span class="project-kicker">Unreal Engine Plugin &middot; Fab</span>
                     <h3>Reasonable Planning AI</h3>
                     <p>Procedural decision-making for NPCs and agents, available on the Fab marketplace.</p>
                     <a class="project-link" href="https://www.fab.com/listings/dd0fadd5-172c-4938-ae9c-be527eab8b09" target="_blank" rel="noopener">View on Fab &rarr;</a>
                 </article>
+            </div>
 
+            <h2>Client Work</h2>
+            <div class="projects">
                 <article class="project">
-                    <span class="project-kicker">Unreal Engine &middot; Open Source</span>
+                    <span class="project-kicker">Client Project &middot; Unreal Engine</span>
                     <h3>ArtilleryEco</h3>
                     <p>Deterministic gameplay, abilities, threaded input, and Jolt physics for UE5, with game simulation that runs separately from frame rate.</p>
                     <a class="project-link" href="https://github.com/OversizedSunCoreDev/ArtilleryEco" target="_blank" rel="noopener">View on GitHub &rarr;</a>
                 </article>
 
                 <article class="project">
-                    <span class="project-kicker">Rust &middot; Open Source</span>
+                    <span class="project-kicker">Client Project &middot; Rust</span>
                     <h3>Longboy</h3>
                     <p>A Rust server for the Bristlecone protocols: session management, precise time sync, and fast input routing for multiplayer games.</p>
                     <a class="project-link" href="https://github.com/OversizedSunCoreDev/longboy" target="_blank" rel="noopener">View on GitHub &rarr;</a>
@@ -468,16 +499,16 @@
                     <h2>Get in Touch</h2>
                     <div class="form-body">
                         <div class="form-group">
-                            <label for="company-name">Name or Studio</label>
-                            <input type="text" id="company-name" name="business_name" placeholder="Your name or studio" required>
+                            <label for="company-name">Studio or Company</label>
+                            <input type="text" id="company-name" name="business_name" placeholder="Your studio or company" required>
                         </div>
                         <div class="form-group">
                             <label for="contact-email">Email</label>
                             <input type="email" id="contact-email" name="initial_contact_email" placeholder="you@example.com" required>
                         </div>
                         <div class="form-group grow">
-                            <label for="work-desc">Message</label>
-                            <textarea id="work-desc" name="message" placeholder="Playtesting, plugin support, collaboration, press, or just saying hi…" required></textarea>
+                            <label for="work-desc">Tell Us About Your Project</label>
+                            <textarea id="work-desc" name="message" placeholder="What are you building, and where can we help? Netcode, engine systems, backend, plugin support…" required></textarea>
                         </div>
                     </div>
                     <div class="form-status" id="form-status" role="alert" aria-live="polite"></div>
