@@ -4,21 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Radaway Software | Bespoke Cloud & Software Engineering</title>
+    <title>Radaway Software | Games &amp; Game Technology</title>
 
     <meta name="description"
-        content="Radaway Software designs and builds bespoke cloud, SRE, and realtime systems for enterprise clients and studios.">
+        content="Radaway Software builds games and the deterministic, networked tech behind them: Unreal Engine plugins, rollback-ready simulation, and a multiplayer RTS in development.">
     <meta name="keywords"
-        content="bespoke software, contractors, consultant, software development, cloud, AWS, site reliability engineering, SRE, Unreal Engine">
+        content="game development, indie games, Unreal Engine, UE5 plugins, game AI, deterministic simulation, multiplayer networking, RTS, Rust, Fab">
     <meta name="robots" content="index, follow">
     <meta name="author" content="Radaway Software">
 
     <link rel="icon" type="image/png" href="images/tardigrade-logo_dsw2tn_sm.png">
     <script src="https://www.google.com/recaptcha/api.js?render=6Lel9AstAAAAAOEoxb9VvTGlsMuoYs12U66anWzH"></script>
 
-    <meta property="og:title" content="Radaway Software | Bespoke Cloud & Software Engineering">
+    <meta property="og:title" content="Radaway Software | Games &amp; Game Technology">
     <meta property="og:description"
-        content="Bespoke cloud, SRE, and realtime systems engineering for enterprise clients and studios.">
+        content="Games and game technology: Unreal Engine plugins, deterministic multiplayer tech, and a multiplayer RTS in development.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://radawaysoftware.com">
 
@@ -28,9 +28,12 @@
         "@type": "Organization",
         "name": "Radaway Software",
         "url": "https://radawaysoftware.com",
-        "description": "Bespoke cloud, SRE, and realtime systems engineering",
-        "serviceType": ["Software Development", "Cloud Consulting", "Site Reliability Engineering", "Solution Architecture"],
-        "areaServed": "United States"
+        "description": "Games and game technology: Unreal Engine plugins, deterministic simulation, and multiplayer networking",
+        "sameAs": [
+            "https://github.com/OversizedSunCoreDev/ArtilleryEco",
+            "https://github.com/OversizedSunCoreDev/longboy",
+            "https://www.fab.com/listings/dd0fadd5-172c-4938-ae9c-be527eab8b09"
+        ]
     }
     </script>
 
@@ -117,7 +120,7 @@
         main {
             flex: 1;
             display: grid;
-            grid-template-columns: 1fr 2fr;
+            grid-template-columns: 3fr 2fr;
             min-height: 0;
         }
 
@@ -144,43 +147,60 @@
             font-size: 1rem;
         }
 
-        .services {
-            list-style: none;
+        .projects {
             display: grid;
-            gap: 0.4rem;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1rem;
         }
 
-        .services li {
-            padding: 0.4rem 0.75rem;
-            border-left: 2px solid var(--primary-pink);
-            font-size: 0.95rem;
+        .project {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            padding: 1rem 1.1rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 0, 128, 0.25);
+            border-left: 3px solid var(--primary-pink);
+            border-radius: 10px;
+            transition: border-color 0.2s, background 0.2s, transform 0.15s;
         }
 
-        .portfolio {
-            margin-top: auto;
-            padding-top: 1.25rem;
-            border-top: 1px solid rgba(255, 0, 128, 0.2);
+        .project:hover {
+            border-color: rgba(255, 0, 128, 0.6);
+            background: rgba(255, 0, 128, 0.05);
         }
 
-        .portfolio h2 {
-            font-size: 0.8rem;
+        .project.featured {
+            border-left-color: var(--accent-blue);
+        }
+
+        .project-kicker {
+            font-size: 0.7rem;
             letter-spacing: 0.12em;
             text-transform: uppercase;
-            color: var(--primary-pink);
-            margin-bottom: 0.6rem;
+            color: var(--accent-blue);
         }
 
-        .portfolio ul {
-            list-style: none;
-            display: grid;
-            gap: 0.35rem;
-            font-size: 0.9rem;
-            color: var(--gray-text);
-        }
-
-        .portfolio li strong {
+        .project h3 {
+            font-size: 1.05rem;
             color: var(--light-text);
+        }
+
+        .project p {
+            color: var(--gray-text);
+            font-size: 0.9rem;
+            flex: 1;
+        }
+
+        .project-link {
+            font-size: 0.85rem;
             font-weight: 600;
+        }
+
+        .project-link.pending {
+            color: var(--gray-text);
+            font-weight: 500;
+            font-style: italic;
         }
 
         .contact {
@@ -359,6 +379,10 @@
                 min-height: unset;
             }
 
+            .projects {
+                grid-template-columns: 1fr;
+            }
+
             .pitch {
                 border-right: none;
                 border-bottom: 1px solid rgba(255, 0, 128, 0.25);
@@ -396,51 +420,64 @@
     <header>
         <img src="images/tardigrade-logo_dsw2tn.png" alt="" class="logo">
         <span class="brand">Radaway Software</span>
-        <span class="brand-tag">Bespoke Engineering</span>
+        <span class="brand-tag">Games &amp; Game Tech</span>
     </header>
 
     <main>
         <section class="pitch" aria-label="About">
-            <h1>Bespoke software, built to last.</h1>
+            <h1>We make games, and the tech that makes them fast.</h1>
             <p class="lede">
-                We design and deliver tailored cloud, SRE, and realtime systems for enterprises and studios that need
-                more than off-the-shelf.
+                Radaway Software is an independent game studio. We build deterministic simulation, low-latency
+                multiplayer networking, and Unreal Engine tools, and we use them to make our own games.
             </p>
 
-            <ul class="services">
-                <li>Cloud architecture &amp; AWS consulting</li>
-                <li>Site reliability engineering</li>
-                <li>Realtime &amp; Unreal Engine systems</li>
-                <li>AI/ML integration</li>
-                <li>Solution architecture</li>
-            </ul>
+            <div class="projects">
+                <article class="project featured">
+                    <span class="project-kicker">Game &middot; In Development</span>
+                    <h3>Untitled Multiplayer RTS</h3>
+                    <p>A multiplayer real-time strategy game, built on our own deterministic simulation and networking stack.</p>
+                    <span class="project-link pending">More soon</span>
+                </article>
 
-            <div class="portfolio">
-                <h2>Selected Work</h2>
-                <ul>
-                    <li><strong>eCommerce Platform Architecture</strong> — cloud-native AWS design at enterprise scale.</li>
-                    <li><strong>Reasonable Planning AI</strong> — Unreal Engine plugin for procedural decision-making.</li>
-                    <li><strong>Oversized Sun: Artillery</strong> — deterministic gameplay &amp; physics plugin for Unreal.</li>
-                </ul>
+                <article class="project">
+                    <span class="project-kicker">Unreal Engine Plugin &middot; Fab</span>
+                    <h3>Reasonable Planning AI</h3>
+                    <p>Procedural decision-making for NPCs and agents, available on the Fab marketplace.</p>
+                    <a class="project-link" href="https://www.fab.com/listings/dd0fadd5-172c-4938-ae9c-be527eab8b09" target="_blank" rel="noopener">View on Fab &rarr;</a>
+                </article>
+
+                <article class="project">
+                    <span class="project-kicker">Unreal Engine &middot; Open Source</span>
+                    <h3>ArtilleryEco</h3>
+                    <p>Deterministic gameplay, abilities, threaded input, and Jolt physics for UE5, with game simulation that runs separately from frame rate.</p>
+                    <a class="project-link" href="https://github.com/OversizedSunCoreDev/ArtilleryEco" target="_blank" rel="noopener">View on GitHub &rarr;</a>
+                </article>
+
+                <article class="project">
+                    <span class="project-kicker">Rust &middot; Open Source</span>
+                    <h3>Longboy</h3>
+                    <p>A Rust server for the Bristlecone protocols: session management, precise time sync, and fast input routing for multiplayer games.</p>
+                    <a class="project-link" href="https://github.com/OversizedSunCoreDev/longboy" target="_blank" rel="noopener">View on GitHub &rarr;</a>
+                </article>
             </div>
         </section>
 
         <section class="contact" aria-label="Contact">
             <div class="contact-frame">
                 <form class="contact-form" id="contact-form" novalidate>
-                    <h2>Let’s Start Something Together</h2>
+                    <h2>Get in Touch</h2>
                     <div class="form-body">
                         <div class="form-group">
-                            <label for="company-name">Company Name</label>
-                            <input type="text" id="company-name" name="business_name" placeholder="Acme Corp" required>
+                            <label for="company-name">Name or Studio</label>
+                            <input type="text" id="company-name" name="business_name" placeholder="Your name or studio" required>
                         </div>
                         <div class="form-group">
                             <label for="contact-email">Email</label>
                             <input type="email" id="contact-email" name="initial_contact_email" placeholder="you@example.com" required>
                         </div>
                         <div class="form-group grow">
-                            <label for="work-desc">Describe the Work</label>
-                            <textarea id="work-desc" name="message" placeholder="Please describe the type of work and high-level objectives…" required></textarea>
+                            <label for="work-desc">Message</label>
+                            <textarea id="work-desc" name="message" placeholder="Playtesting, plugin support, collaboration, press, or just saying hi…" required></textarea>
                         </div>
                     </div>
                     <div class="form-status" id="form-status" role="alert" aria-live="polite"></div>
