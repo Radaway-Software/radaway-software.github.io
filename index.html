@@ -4,21 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Radaway Software | Games &amp; Game Technology</title>
+    <title>Radaway Software | Game Technology &amp; Engineering</title>
 
     <meta name="description"
-        content="Radaway Software builds games and the deterministic, networked tech behind them: Unreal Engine plugins, rollback-ready simulation, and a multiplayer RTS in development.">
+        content="Radaway Software is a technology company focused on games: multiplayer networking, deterministic simulation, Unreal Engine systems, and game backends for studios, plus our own products.">
     <meta name="keywords"
-        content="game development, indie games, Unreal Engine, UE5 plugins, game AI, deterministic simulation, multiplayer networking, RTS, Rust, Fab">
+        content="game technology, game development services, Unreal Engine, UE5 plugins, multiplayer networking, netcode, deterministic simulation, game AI, game backend, Rust, RTS">
     <meta name="robots" content="index, follow">
     <meta name="author" content="Radaway Software">
 
     <link rel="icon" type="image/png" href="images/tardigrade-logo_dsw2tn_sm.png">
     <script src="https://www.google.com/recaptcha/api.js?render=6Lel9AstAAAAAOEoxb9VvTGlsMuoYs12U66anWzH"></script>
 
-    <meta property="og:title" content="Radaway Software | Games &amp; Game Technology">
+    <meta property="og:title" content="Radaway Software | Game Technology &amp; Engineering">
     <meta property="og:description"
-        content="Games and game technology: Unreal Engine plugins, deterministic multiplayer tech, and a multiplayer RTS in development.">
+        content="Game technology and engineering for studios: multiplayer networking, deterministic simulation, Unreal Engine systems, and game backends.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://radawaysoftware.com">
 
@@ -28,12 +28,9 @@
         "@type": "Organization",
         "name": "Radaway Software",
         "url": "https://radawaysoftware.com",
-        "description": "Games and game technology: Unreal Engine plugins, deterministic simulation, and multiplayer networking",
-        "sameAs": [
-            "https://github.com/OversizedSunCoreDev/ArtilleryEco",
-            "https://github.com/OversizedSunCoreDev/longboy",
-            "https://www.fab.com/listings/dd0fadd5-172c-4938-ae9c-be527eab8b09"
-        ]
+        "description": "Technology company focused on games: multiplayer networking, deterministic simulation, Unreal Engine systems, and game backends",
+        "serviceType": ["Game Development", "Multiplayer Networking", "Unreal Engine Development", "Game Backend Engineering"],
+        "areaServed": "United States"
     }
     </script>
 
@@ -56,8 +53,8 @@
             box-sizing: border-box;
         }
 
-        html, body {
-            height: 100%;
+        html {
+            background: var(--darker-bg);
         }
 
         body {
@@ -65,9 +62,9 @@
             line-height: 1.5;
             color: var(--light-text);
             background: var(--gradient-dark);
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            overflow: hidden;
         }
 
         *:focus-visible {
@@ -121,7 +118,7 @@
             flex: 1;
             display: grid;
             grid-template-columns: 3fr 2fr;
-            min-height: 0;
+            align-items: start;
         }
 
         .pitch {
@@ -130,7 +127,7 @@
             display: flex;
             flex-direction: column;
             gap: 1.25rem;
-            overflow-y: auto;
+            min-height: 100%;
         }
 
         .pitch h1 {
@@ -147,6 +144,28 @@
             font-size: 1rem;
         }
 
+        .capabilities {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .capabilities li {
+            padding: 0.3rem 0.75rem;
+            border: 1px solid rgba(255, 0, 128, 0.35);
+            border-radius: 999px;
+            font-size: 0.85rem;
+        }
+
+        .pitch h2 {
+            font-size: 0.8rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--primary-pink);
+            margin-top: 0.5rem;
+        }
+
         .projects {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -154,24 +173,77 @@
         }
 
         .project {
+            --card-accent: var(--primary-pink);
+            --card-accent-rgb: 255, 0, 128;
+            position: relative;
             display: flex;
             flex-direction: column;
             gap: 0.5rem;
-            padding: 1rem 1.1rem;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 0, 128, 0.25);
-            border-left: 3px solid var(--primary-pink);
-            border-radius: 10px;
-            transition: border-color 0.2s, background 0.2s, transform 0.15s;
+            padding: 1.1rem 1.2rem;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            background:
+                linear-gradient(rgba(255, 255, 255, 0.025), rgba(255, 255, 255, 0.025)) padding-box,
+                repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.018) 0 1px, transparent 1px 4px) padding-box,
+                linear-gradient(var(--darker-bg), var(--darker-bg)) padding-box,
+                linear-gradient(135deg, rgba(var(--card-accent-rgb), 0.55), rgba(255, 255, 255, 0.06) 45%, rgba(var(--card-accent-rgb), 0.3)) border-box;
+            transition: box-shadow 0.25s, transform 0.2s;
+        }
+
+        .project::before,
+        .project::after {
+            content: "";
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border-color: var(--card-accent);
+            border-style: solid;
+            opacity: 0.8;
+            transition: width 0.25s, height 0.25s, opacity 0.25s;
+            pointer-events: none;
+        }
+
+        .project::before {
+            top: -1px;
+            left: -1px;
+            border-width: 2px 0 0 2px;
+            border-top-left-radius: 4px;
+        }
+
+        .project::after {
+            bottom: -1px;
+            right: -1px;
+            border-width: 0 2px 2px 0;
+            border-bottom-right-radius: 4px;
         }
 
         .project:hover {
-            border-color: rgba(255, 0, 128, 0.6);
-            background: rgba(255, 0, 128, 0.05);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px -12px rgba(var(--card-accent-rgb), 0.45);
+        }
+
+        .project:hover::before,
+        .project:hover::after {
+            width: 22px;
+            height: 22px;
+            opacity: 1;
         }
 
         .project.featured {
-            border-left-color: var(--accent-blue);
+            --card-accent: var(--accent-blue);
+            --card-accent-rgb: 0, 212, 255;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .project,
+            .project::before,
+            .project::after {
+                transition: none;
+            }
+
+            .project:hover {
+                transform: none;
+            }
         }
 
         .project-kicker {
@@ -205,11 +277,11 @@
 
         .contact {
             padding: 1.5rem 2rem;
-            overflow-y: auto;
+            position: sticky;
+            top: 0;
         }
 
         .contact-frame {
-            height: 100%;
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 0, 128, 0.25);
             border-radius: 12px;
@@ -220,7 +292,6 @@
             display: flex;
             flex-direction: column;
             gap: 1.1rem;
-            height: 100%;
         }
 
         .contact-form h2 {
@@ -287,8 +358,7 @@
 
         .form-group textarea {
             resize: vertical;
-            min-height: 100px;
-            height: 100%;
+            min-height: 180px;
         }
 
         .submit-btn {
@@ -366,17 +436,8 @@
         }
 
         @media (max-width: 900px) {
-            html, body {
-                height: auto;
-            }
-
-            body {
-                overflow: auto;
-            }
-
             main {
                 grid-template-columns: 1fr;
-                min-height: unset;
             }
 
             .projects {
@@ -384,26 +445,28 @@
             }
 
             .pitch {
+                padding: 2rem 1rem;
                 border-right: none;
                 border-bottom: 1px solid rgba(255, 0, 128, 0.25);
-                overflow-y: unset;
             }
 
             .contact {
-                overflow-y: unset;
+                position: static;
+                padding: 1.5rem 1rem;
             }
 
-            .contact-frame {
-                height: auto;
+            header {
+                padding: 1rem;
             }
 
-            .contact-form {
-                height: auto;
+            footer {
+                padding: 0.6rem 1rem;
             }
+        }
 
-            .form-group textarea {
-                min-height: 140px;
-                height: auto;
+        @media (max-width: 480px) {
+            .brand-tag {
+                display: none;
             }
         }
 
@@ -420,41 +483,53 @@
     <header>
         <img src="images/tardigrade-logo_dsw2tn.png" alt="" class="logo">
         <span class="brand">Radaway Software</span>
-        <span class="brand-tag">Games &amp; Game Tech</span>
+        <span class="brand-tag">Game Technology</span>
     </header>
 
     <main>
         <section class="pitch" aria-label="About">
-            <h1>We make games, and the tech that makes them fast.</h1>
+            <h1>Technology for games, built to perform.</h1>
             <p class="lede">
-                Radaway Software is an independent game studio. We build deterministic simulation, low-latency
-                multiplayer networking, and Unreal Engine tools, and we use them to make our own games.
+                Radaway Software is a technology company focused on games. We help studios build multiplayer
+                networking, deterministic simulation, and Unreal Engine systems, and we ship products of our own.
             </p>
 
+            <ul class="capabilities" aria-label="Capabilities">
+                <li>Multiplayer networking &amp; netcode</li>
+                <li>Deterministic simulation</li>
+                <li>Unreal Engine systems</li>
+                <li>Game AI</li>
+                <li>Game backends &amp; cloud</li>
+            </ul>
+
+            <h2>Our Products</h2>
             <div class="projects">
                 <article class="project featured">
                     <span class="project-kicker">Game &middot; In Development</span>
                     <h3>Untitled Multiplayer RTS</h3>
-                    <p>A multiplayer real-time strategy game, built on our own deterministic simulation and networking stack.</p>
+                    <p>A multiplayer real-time strategy game, currently in development.</p>
                     <span class="project-link pending">More soon</span>
                 </article>
 
-                <article class="project">
+                <article class="project featured">
                     <span class="project-kicker">Unreal Engine Plugin &middot; Fab</span>
                     <h3>Reasonable Planning AI</h3>
                     <p>Procedural decision-making for NPCs and agents, available on the Fab marketplace.</p>
                     <a class="project-link" href="https://www.fab.com/listings/dd0fadd5-172c-4938-ae9c-be527eab8b09" target="_blank" rel="noopener">View on Fab &rarr;</a>
                 </article>
+            </div>
 
+            <h2>Client Work</h2>
+            <div class="projects">
                 <article class="project">
-                    <span class="project-kicker">Unreal Engine &middot; Open Source</span>
+                    <span class="project-kicker">Client Project &middot; Unreal Engine</span>
                     <h3>ArtilleryEco</h3>
                     <p>Deterministic gameplay, abilities, threaded input, and Jolt physics for UE5, with game simulation that runs separately from frame rate.</p>
                     <a class="project-link" href="https://github.com/OversizedSunCoreDev/ArtilleryEco" target="_blank" rel="noopener">View on GitHub &rarr;</a>
                 </article>
 
                 <article class="project">
-                    <span class="project-kicker">Rust &middot; Open Source</span>
+                    <span class="project-kicker">Client Project &middot; Rust</span>
                     <h3>Longboy</h3>
                     <p>A Rust server for the Bristlecone protocols: session management, precise time sync, and fast input routing for multiplayer games.</p>
                     <a class="project-link" href="https://github.com/OversizedSunCoreDev/longboy" target="_blank" rel="noopener">View on GitHub &rarr;</a>
@@ -468,16 +543,16 @@
                     <h2>Get in Touch</h2>
                     <div class="form-body">
                         <div class="form-group">
-                            <label for="company-name">Name or Studio</label>
-                            <input type="text" id="company-name" name="business_name" placeholder="Your name or studio" required>
+                            <label for="company-name">Studio or Company</label>
+                            <input type="text" id="company-name" name="business_name" placeholder="Your studio or company" required>
                         </div>
                         <div class="form-group">
                             <label for="contact-email">Email</label>
                             <input type="email" id="contact-email" name="initial_contact_email" placeholder="you@example.com" required>
                         </div>
                         <div class="form-group grow">
-                            <label for="work-desc">Message</label>
-                            <textarea id="work-desc" name="message" placeholder="Playtesting, plugin support, collaboration, press, or just saying hi…" required></textarea>
+                            <label for="work-desc">Tell Us About Your Project</label>
+                            <textarea id="work-desc" name="message" placeholder="What are you building, and where can we help? Netcode, engine systems, backend, plugin support…" required></textarea>
                         </div>
                     </div>
                     <div class="form-status" id="form-status" role="alert" aria-live="polite"></div>
